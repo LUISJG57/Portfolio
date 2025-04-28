@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: #F0E8DF;
+  --color-primary: #FFB612;
+  --color-secondary: #203731;
+  --color-accent: #ED6037;
+  --color-text: #282F3C;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Dark mode usando media query fuera de @theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-background: #203731;
+    --color-text: #F0E8DF;
+    --color-secondary: #F0E8DF;
+    /* Mantén o ajusta otros colores para dark mode si es necesario */
   }
 }
 
+/* Bloque @theme solo con asignaciones de variables */
+@theme {
+  --color-background: var(--color-background);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-text: var(--color-text);
+  
+  /* Fuentes personalizadas */
+  --font-family-mono: "Monocraft";
+  --font-family-sans: "InriaSans-Regular";
+  --font-family-sans-bold: "InriaSans-Bold";
+  --font-family-sans-light: "InriaSans-Light";
+}
+
+/* Definiciones de fuentes (mantén esto igual) */
+@font-face {
+  font-family: 'InriaSans-Bold';
+  src: url('/fonts/InriaSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InriaSans-Regular';
+  src: url('/fonts/InriaSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InriaSans-Light';
+  src: url('/fonts/InriaSans-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Monocraft';
+  src: url('/fonts/Monocraft.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Estilos base */
 body {
-  background: var(--background);
-  color: var(--foreground);
+  @apply bg-background text-text;
   font-family: Arial, Helvetica, sans-serif;
 }
