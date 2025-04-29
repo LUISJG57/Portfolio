@@ -1,16 +1,15 @@
 import Experience from "@/app/_components/experience/experience";
-import Navbar from "@/app/_components/navbar/navbar";
+import Hackatons from "@/app/_components/experience/hackatons";
 
-export default function Contact() {
+export default function Work() {
   return (
-    <main className="items-center">
-      <Navbar />
-      <div className="flex flex-row justify-center items-center gap-10 max-w-7xl mx-auto">
-        <div className="w-1/2 transform">
+    <main className="flex items-center justify-center bg-background min-h-screen">
+      <div className="flex flex-row justify-center items-center gap-30 mx-20">
+        <div className="w-1/2">
           <Experience />
         </div>
-        <div className="w-1/2 transform">
-          Hola
+        <div className="w-1/2">
+          <Hackatons />
         </div>
       </div>
     </main>

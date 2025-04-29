@@ -6,14 +6,17 @@
   --color-secondary: #203731;
   --color-accent: #ED6037;
   --color-text: #282F3C;
+  --color-tex2: #FFB612;
 }
 
 /* Dark mode usando media query fuera de @theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #203731;
+    /*--color-background: #203731;*/
+    --color-background: #282F3C;
     --color-text: #F0E8DF;
     --color-secondary: #F0E8DF;
+    --color-tex2: #203731;
     /* Mantén o ajusta otros colores para dark mode si es necesario */
   }
 }

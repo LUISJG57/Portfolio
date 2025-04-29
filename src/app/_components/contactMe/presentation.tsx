@@ -9,7 +9,7 @@ export default function Presentation() {
         <br />
         I'm Luis!
         </h1>
-      <p className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Regular',  fontSize: '1.5rem'}}>
+      <p className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '2rem'}}>
         I'm a computer science student<br />
         at the Tecnológico de Monterrey.<br />
         I'm in my sixth semester and I'm<br />
@@ -27,7 +27,7 @@ export default function Presentation() {
             width={20} 
             height={20} 
           />
-          <p className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Regular',  fontSize: '1.1rem'}}>
+          <p className="text-[#F0E8DF]" style={{ fontFamily: 'InriaSans-Regular',  fontSize: '1.1rem'}}>
             linkedin.com/in/luisjuarezg
           </p>
         </div>
