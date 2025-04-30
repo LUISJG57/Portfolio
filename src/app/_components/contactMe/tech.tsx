@@ -72,7 +72,7 @@ export default function Tech() {
                 <SvgIcon 
                   src={tool.logo} 
                   alt={tool.alt} 
-                />
+                /> 
               </div>
             </div>
           ))}
