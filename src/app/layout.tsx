@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        <main className="pt-16"> {/* Ajusta según la altura de tu navbar */}
+        <main className="pt-1">
           {children}
         </main>
       </body>

@@ -27,7 +27,7 @@ export default function Navbar() {
 
     observerRef.current = new IntersectionObserver(handleIntersection, {
       root: null,
-      rootMargin: '-20% 0px -60% 0px', // Ajusta según necesidad
+      rootMargin: '-20% 0px -60% 0px',
       threshold: 0.1,
     });
 
@@ -40,7 +40,7 @@ export default function Navbar() {
     return () => observerRef.current?.disconnect();
   }, []);
 
-  // 3. Función para scroll suave (opcional, si aún usas clicks)
+  // 3. Función para scroll suave
   const handleScrollTo = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -54,7 +54,7 @@ export default function Navbar() {
         ? "font-bold underline underline-offset-4 decoration-2"
         : "font-light"
     } ${
-      isScrolled ? "text-text" : "text-[var(--color-secondary)]"
+      isScrolled ? "text-text" : "text-[var(--color-background)]"
     } hover:opacity-80`;
   };
 
@@ -63,14 +63,13 @@ export default function Navbar() {
       isScrolled ? "bg-background/50 backdrop-blur-md shadow-sm" : "bg-transparent"
     }`}>
       <div className="flex justify-between items-center mx-auto">
-        {/* Logo (scroll al inicio) */}
         <div 
           className="flex items-center gap-4 cursor-pointer" 
           onClick={() => handleScrollTo('home')}
         >
           <div className="w-6 h-6 rounded-full bg-accent"></div>
           <span 
-            className="text-[var(--color-secondary)]" 
+            className={`transition-colors ${isScrolled ? "text-text" : "text-[var(--color-background)]"}`} 
             style={{ fontFamily: "Monocraft", fontSize: "1.5rem" }}
           >
             Luis Juárez
@@ -97,7 +96,7 @@ export default function Navbar() {
             </button>
           ))}
           
-          {/* Botón de Contacto (estilo especial) */}
+          {/* Botón de Contacto */}
           <div className={`px-2 py-1 rounded-full transition-all ${
             isScrolled ? "bg-primary/90" : "bg-primary"
           }`}>
