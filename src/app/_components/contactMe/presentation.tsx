@@ -1,18 +1,38 @@
+"use client"
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Presentation() {
   return (
     <div className="flex flex-col justify-center">
-        <h1 className="text-[var(--color-text)]" style={{ fontFamily: 'Monocraft',  fontSize: '4.5rem'}}>
-        Hello,
-        <br />
-        I'm Luis!
+        <h1 className="text-[var(--color-text)]" style={{ fontFamily: 'Monocraft', fontSize: '4.5rem', whiteSpace: 'nowrap', overflow: 'hidden', borderRight: '2px solid', animation: 'typing 2s steps(20) infinite alternate, blink .7s infinite' 
+        }}>
+          Hello,
+          <br />
+          I&apos;m Luis!
         </h1>
+        <style jsx>{`
+          @keyframes typing {
+            from {
+              width: 0;
+            }
+            to {
+              width: 100%;
+            }
+          }
+          @keyframes blink-caret {
+            from, to {
+              border-color: transparent;
+            }
+            50% {
+              border-color: var(--color-text);
+            }
+          }
+        `}</style>
       <p className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '2rem'}}>
-        I'm a computer science student<br />
+        I&apos;m a computer science student<br />
         at the Tecnológico de Monterrey.<br />
-        I'm in my sixth semester and I'm<br />
+        I&apos;m in my sixth semester and I&apos;m<br />
         currently living in Monterrey.
       </p>
       

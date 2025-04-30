@@ -1,5 +1,4 @@
 "use client";
-import React, { useEffect, useState } from 'react';
 import SvgIcon from '../svgIcon';
 interface Skill {
   name: string;
@@ -45,7 +44,7 @@ export default function Tech() {
         </div>
         <div className="grid grid-cols-4 gap-6">
           {programmingLanguages.map((skill) => (
-            <div key={skill.name} className="flex justify-center">
+            <div key={skill.name} className="flex justify-center intersect:motion-preset-slide-left-lg">
                 <div className="flex items-center justify-center">
                   <SvgIcon 
                     src={skill.logo} 
@@ -66,7 +65,7 @@ export default function Tech() {
             Tools & Technologies
             </h2>
         </div>
-        <div className="grid grid-cols-6 gap-6 gap-y-8">
+        <div className="grid grid-cols-6 gap-6 gap-y-8 intersect:motion-preset-slide-right-lg">
           {tools.slice(0, 12).map((tool) => (
             <div key={tool.name} className="flex justify-center">
               <div className="flex items-center justify-center">

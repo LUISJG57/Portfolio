@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin 'tailwindcss-motion';
+@plugin 'tailwindcss-intersect';
 
 :root {
   --color-background: #F0E8DF;
@@ -12,12 +14,10 @@
 /* Dark mode usando media query fuera de @theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    /*--color-background: #203731;*/
     --color-background: #282F3C;
     --color-text: #F0E8DF;
     --color-secondary: #F0E8DF;
     --color-tex2: #203731;
-    /* Mantén o ajusta otros colores para dark mode si es necesario */
   }
 }
 
@@ -29,7 +29,6 @@
   --color-accent: var(--color-accent);
   --color-text: var(--color-text);
   
-  /* Fuentes personalizadas */
   --font-family-mono: "Monocraft";
   --font-family-sans: "InriaSans-Regular";
   --font-family-sans-bold: "InriaSans-Bold";

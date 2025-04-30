@@ -1,12 +1,10 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const router = useRouter();
 
   // 1. Efecto para el scroll del navbar (fondo al hacer scroll)
   useEffect(() => {

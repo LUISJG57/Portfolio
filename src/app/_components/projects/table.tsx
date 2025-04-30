@@ -3,7 +3,8 @@ import Tag from "./tag";
 export default function Table() {
     return (
         <div className="flex flex-col justify-center items-center mx-10 gap-y-5">
-            <h1 className="text-[var(--color-tex2)]" style={{ fontFamily: 'Monocraft',  fontSize: '5rem'}}>
+            <h1 className="text-[var(--color-tex2)] intersect:motion-preset-slide-right-lg" 
+            style={{ fontFamily: 'Monocraft',  fontSize: '5rem'}}>
             PROJECTS
             </h1>
             <div className="grid grid-cols-3 gap-10">

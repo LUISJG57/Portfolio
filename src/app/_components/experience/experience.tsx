@@ -1,17 +1,14 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import SvgIcon from '../svgIcon';
 
 export default function Experience() {
   return (
     <div className="flex flex-col justify-center items-center  gap-y-10">
-        <h1 className="text-[var(--color-text)]" style={{ fontFamily: 'Monocraft',  fontSize: '3rem'}}>
+        <h1 className="text-[var(--color-text)] intersect:motion-preset-slide-down-md" style={{ fontFamily: 'Monocraft',  fontSize: '3rem'}}>
         Experience
         </h1>
         <div className="flex flex-row justify-center gap-20">
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center intersect:motion-preset-pop'>
                   <SvgIcon 
                     src={'/images/logos/DIDI.svg'} 
                     alt={"Didi Logo"} 
@@ -40,7 +37,7 @@ export default function Experience() {
 
 
         <div className="flex flex-row justify-center gap-20">
-          <div className='flex flex-col items-center'>
+          <div className='flex flex-col items-center intersect:motion-preset-pop'>
                 <SvgIcon 
                   src={'/images/logos/TEC.svg'} 
                   alt={"TEC Logo"} 

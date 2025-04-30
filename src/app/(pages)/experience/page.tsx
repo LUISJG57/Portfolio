@@ -8,7 +8,7 @@ export default function Work() {
         <div className="w-1/2">
           <Experience />
         </div>
-        <div className="w-1/2">
+        <div className="w-1/2 intersect:motion-preset-slide-left">
           <Hackatons />
         </div>
       </div>
