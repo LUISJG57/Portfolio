@@ -16,10 +16,10 @@ const programmingLanguages: Skill[] = [
 const tools: Skill[] = [
   { name: 'Firebase', logo: '/images/logos/firebase.svg', alt: 'Firebase logo' },
   { name: 'Git', logo: '/images/logos/git.svg', alt: 'Git logo' },
-  { name: 'PostgreSQL', logo: '/images/logos/postgresql.svg', alt: 'PostgreSQL logo' },
+  { name: 'PostgreSQL', logo: '/images/logos/Postgresql.svg', alt: 'PostgreSQL logo' },
   { name: 'MySQL', logo: '/images/logos/mysql.svg', alt: 'MySql logo' },
   { name: 'Next.js', logo: '/images/logos/nextjs.svg', alt: 'Next.js logo' },
-  { name: 'React', logo: '/images/logos/react.svg', alt: 'React logo' },
+  { name: 'React', logo: '/images/logos/React.svg', alt: 'React logo' },
   { name: 'OpenAI', logo: '/images/logos/OpenAi.svg', alt: 'OpenAI logo' },
   { name: 'Oracle', logo: '/images/logos/Oracle.svg', alt: 'Oracle logo' },
   { name: 'Azure', logo: '/images/logos/AZURE.svg', alt: 'Azure logo' },
