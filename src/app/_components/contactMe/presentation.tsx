@@ -1,10 +1,9 @@
 "use client"
-import Link from 'next/link';
-import Image from 'next/image';
+import SvgIcon from '../svgIcon';
 
 export default function Presentation() {
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center gap-5">
         <h1 className="text-[var(--color-text)]" style={{ fontFamily: 'Monocraft', fontSize: '4.5rem', whiteSpace: 'nowrap', overflow: 'hidden', borderRight: '2px solid', animation: 'typing 2s steps(20) infinite alternate, blink .7s infinite' 
         }}>
           Hello,
@@ -36,22 +35,25 @@ export default function Presentation() {
         currently living in Monterrey.
       </p>
       
-      <Link href="https://linkedin.com/in/luisjuarezg" className="gap-4" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'InriaSans-Regular',  fontSize: '1rem'}}>
-        <div className="w-5 h-5 mr-2 relative">
-          
-        </div>
-        <div className="flex flex-row items-center mb-6 px-4 py-0.5 gap-4 bg-accent rounded-full">
-          <Image 
-            src="/images/logos/Search.svg" 
-            alt="Search" 
-            width={20} 
-            height={20} 
-          />
-          <p className="text-[#F0E8DF]" style={{ fontFamily: 'InriaSans-Regular',  fontSize: '1.1rem'}}>
-            linkedin.com/in/luisjuarezg
-          </p>
-        </div>
-      </Link>
+      <button 
+        onClick={() => {
+          const link = document.createElement('a');
+          link.href = '/files/LuisJuarez2025_Resume.pdf'; // Update this path to the correct file location
+          link.download = 'LuisJuarezCV.pdf';
+          link.click();
+        }} 
+        className="flex flex-row items-center mb-6 px-4 py-0.5 gap-4 bg-accent rounded-full hover:opacity-80 transition-opacity"
+        style={{ fontFamily: 'InriaSans-Regular', fontSize: '1rem' }}
+      >
+        <SvgIcon 
+          src={'/images/logos/CV_icon.svg'} 
+          alt={"CV Logo"} 
+          size={20}
+        />
+        <p className="text-[#F0E8DF]" style={{ fontFamily: 'InriaSans-Regular', fontSize: '1.1rem' }}>
+          Download my CV
+        </p>
+      </button>
     </div>
   );
 }
