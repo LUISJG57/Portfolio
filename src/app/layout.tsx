@@ -27,8 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Navbar />
         <ObserverProvider>
-          <Navbar />
           <main className="pt-1">
             {children}
           </main>
