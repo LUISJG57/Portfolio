@@ -82,7 +82,7 @@ export default function Hackatons() {
                     </h2>
                     <ul className="text-[var(--color-background)]" style={{ fontFamily: 'InriaSans-Light', listStyleType: 'disc', paddingLeft: '1rem' }}>
                     <li>Developed a Web App that allows visualizing and analyzing customer conversations, transcribing in real-time, analyzing emotions, detecting key topics, and generating reports with relevant metrics.</li>
-                    <li>Won 1st Place in the Technology Entrepreneurship category at Tecnológico de Monterrey's ExpoIngenierías and Best Development, awarded by our corporate mentor NEORIS.</li>
+                    <li>Won 1st Place in the Technology Entrepreneurship category at Tecnológico de Monterrey ExpoIngenierías and Best Development, awarded by our corporate mentor NEORIS.</li>
                     </ul>
 
                 </div>
