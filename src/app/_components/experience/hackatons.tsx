@@ -74,6 +74,17 @@ export default function Hackatons() {
                     <li>Developed an iOS app promoting reading comprehension, and showcasing statistics and relevant metrics.</li>
                     </ul>
 
+                    <h2 className="text-[var(--color-background)] flex items-center gap-2" style={{ fontFamily: 'InriaSans-Bold', fontSize: '1.5rem' }}>
+                        Expo ingenierias ITESM Monterrey – 2025
+                        <span className="bg-primary text-black px-2 py-1 rounded font-bold text-xs" style={{ fontFamily: 'InriaSans-Bold' }}>
+                            WINNER
+                        </span>
+                    </h2>
+                    <ul className="text-[var(--color-background)]" style={{ fontFamily: 'InriaSans-Light', listStyleType: 'disc', paddingLeft: '1rem' }}>
+                    <li>Developed a Web App that allows visualizing and analyzing customer conversations, transcribing in real-time, analyzing emotions, detecting key topics, and generating reports with relevant metrics.</li>
+                    <li>Won 1st Place in the Technology Entrepreneurship category at Tecnológico de Monterrey's ExpoIngenierías and Best Development, awarded by our corporate mentor NEORIS.</li>
+                    </ul>
+
                 </div>
             </div>
         </div>

@@ -31,14 +31,14 @@ export default function Presentation() {
       <p className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '2rem'}}>
         I&apos;m a computer science student<br />
         at the Tecnológico de Monterrey.<br />
-        I&apos;m in my sixth semester and I&apos;m<br />
+        I&apos;m in my seventh semester and I&apos;m<br />
         currently living in Monterrey.
       </p>
       
       <button 
         onClick={() => {
           const link = document.createElement('a');
-          link.href = '/files/LuisJuarez2025_Resume.pdf'; // Update this path to the correct file location
+          link.href = '/files/Resume_LuisJuarez_07:2025.pdf';
           link.download = 'LuisJuarezCV.pdf';
           link.click();
         }} 
