@@ -4,7 +4,7 @@ import SvgIcon from '../svgIcon';
 export default function Presentation() {
   return (
     <div className="flex flex-col justify-center gap-5">
-        <h1 className="text-[var(--color-text)] text-5xl md:text-[4.5rem]" style={{ fontFamily: 'Monocraft', whiteSpace: 'nowrap', overflow: 'hidden', borderRight: '2px solid', animation: 'typing 2s steps(20) infinite alternate, blink .7s infinite' 
+        <h1 className="text-[var(--color-text)] text-4xl sm:text-5xl md:text-[4.5rem]" style={{ fontFamily: 'Monocraft', whiteSpace: 'nowrap', overflow: 'hidden', borderRight: '2px solid', animation: 'typing 2s steps(20) infinite alternate, blink .7s infinite' 
         }}>
           Hello,
           <br />
@@ -29,9 +29,9 @@ export default function Presentation() {
           }
         `}</style>
       <p className="text-[var(--color-text)] text-xl md:text-[2rem]" style={{ fontFamily: 'InriaSans-Light'}}>
-        I&apos;m a computer science student<br className="hidden md:inline" />
-        at the Tecnológico de Monterrey.<br className="hidden md:inline" />
-        I&apos;m in my seventh semester and I&apos;m<br className="hidden md:inline" />
+        I&apos;m a computer science student{" "}<br className="hidden md:inline" />
+        at the Tecnológico de Monterrey.{" "}<br className="hidden md:inline" />
+        I&apos;m in my seventh semester and I&apos;m{" "}<br className="hidden md:inline" />
         currently living in Monterrey.
       </p>
       

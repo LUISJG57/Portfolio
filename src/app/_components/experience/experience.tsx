@@ -8,7 +8,7 @@ export default function Experience() {
         Experience
         </h1>
         <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-20">
-            <div className='flex flex-col items-center intersect:motion-preset-pop'>
+            <div className='flex flex-col items-center shrink-0 whitespace-nowrap intersect:motion-preset-pop'>
                   <SvgIcon 
                     src={'/images/logos/DIDI.svg'} 
                     alt={"Didi Logo"} 
@@ -37,7 +37,7 @@ export default function Experience() {
 
 
         <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-20">
-          <div className='flex flex-col items-center intersect:motion-preset-pop'>
+          <div className='flex flex-col items-center shrink-0 whitespace-nowrap intersect:motion-preset-pop'>
                 <SvgIcon 
                   src={'/images/logos/TEC.svg'} 
                   alt={"TEC Logo"} 
@@ -63,7 +63,7 @@ export default function Experience() {
         </div>
 
         <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-20">
-          <div className='flex flex-col items-center intersect:motion-preset-pop'>
+          <div className='flex flex-col items-center shrink-0 whitespace-nowrap intersect:motion-preset-pop'>
                 <SvgIcon 
                   src={'/images/logos/bat-logo-black.svg'} 
                   alt={"BAT Logo"} 
