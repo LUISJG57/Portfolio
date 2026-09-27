@@ -4,6 +4,8 @@ import SvgIcon from '../svgIcon';
 interface Skill {
   name: string;
   logo: string;
+  // Raster logos can't be recolored through their fills, so they are drawn as a CSS mask.
+  mask?: boolean;
 }
 
 interface SkillRow {
@@ -60,6 +62,7 @@ const rows: SkillRow[] = [
       { name: 'PostgreSQL', logo: L('Postgresql.svg') },
       { name: 'MySQL', logo: L('mysql.svg') },
       { name: 'Apache Spark', logo: L('apachespark.svg') },
+      { name: 'Delta Lake', logo: L('delta.svg'), mask: true },
       { name: 'Superset', logo: L('apachesuperset.svg') },
       { name: 'Power BI', logo: L('PowerBi.svg') },
       { name: 'Streamlit', logo: L('streamlit.svg') },
@@ -69,6 +72,7 @@ const rows: SkillRow[] = [
     title: 'Cloud & DevOps',
     skills: [
       { name: 'Azure', logo: L('AZURE.svg') },
+      { name: 'AWS', logo: L('aws.svg') },
       { name: 'Google Cloud', logo: L('googlecloud.svg') },
       { name: 'Oracle Cloud', logo: L('Oracle.svg') },
       { name: 'Docker', logo: L('docker.svg') },
@@ -88,6 +92,7 @@ const rows: SkillRow[] = [
       { name: 'Cypress', logo: L('cypress.svg') },
       { name: 'Postman', logo: L('postman.svg') },
       { name: 'Figma', logo: L('FIGMA.svg') },
+      { name: 'Salesforce', logo: L('salesforce.svg') },
       { name: 'Unity', logo: L('UNITY.svg') },
     ],
   },
@@ -104,7 +109,21 @@ function Marquee({ skills, reverse }: { skills: Skill[]; reverse?: boolean }) {
             className="flex flex-col items-center gap-2 px-4 md:px-6"
             aria-hidden={i >= skills.length}
           >
-            <SvgIcon src={skill.logo} alt={`${skill.name} logo`} size={38} />
+            {skill.mask ? (
+              <span
+                role="img"
+                aria-label={`${skill.name} logo`}
+                className="block bg-[var(--color-background)]"
+                style={{
+                  width: 38,
+                  height: 38,
+                  mask: `url('${skill.logo}') center / contain no-repeat`,
+                  WebkitMask: `url('${skill.logo}') center / contain no-repeat`,
+                }}
+              />
+            ) : (
+              <SvgIcon src={skill.logo} alt={`${skill.name} logo`} size={38} />
+            )}
             <span className="text-[var(--color-background)] text-xs md:text-sm whitespace-nowrap" style={{ fontFamily: 'InriaSans-Regular' }}>
               {skill.name}
             </span>
