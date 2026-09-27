@@ -66,6 +66,39 @@
 
 /* Estilos base */
 body {
-  @apply bg-background text-text;
+  @apply bg-background text-text overflow-x-hidden;
   font-family: Arial, Helvetica, sans-serif;
+}
+/* Carrusel de tecnologías */
+.marquee {
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-reverse {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .marquee-track > [aria-hidden="true"] {
+    display: none;
+  }
 }

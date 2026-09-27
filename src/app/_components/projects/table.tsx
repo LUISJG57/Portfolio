@@ -2,15 +2,16 @@ import Tag from "./tag";
 
 export default function Table() {
     return (
-        <div className="flex flex-col justify-center items-center mx-10 gap-y-5">
-            <h1 className="text-[var(--color-tex2)] intersect:motion-preset-slide-right-lg" 
-            style={{ fontFamily: 'Monocraft',  fontSize: '5rem'}}>
+        <div className="flex flex-col justify-center items-center mx-0 md:mx-10 gap-y-5">
+            <h1 className="text-[var(--color-tex2)] text-5xl md:text-[5rem] intersect:motion-preset-slide-right-lg" 
+            style={{ fontFamily: 'Monocraft'}}>
             PROJECTS
             </h1>
-            <div className="grid grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
                 <Tag title="PuzzleLove" content="A real-time multiplayer jigsaw puzzle and the whole platform around it, running on a single 8 GB VPS I operate: an authoritative Node + Socket.IO game server with a deterministic shared engine, a nightly PySpark + Delta Lake pipeline into a Postgres star-schema warehouse, a public Superset dashboard defined as code, and CI/CD that ships five images and rolls itself back on a failed health check."
-                    image="/images/puzzlelove/game.png" repo="https://github.com/LUISJG57/PuzzleLove"
+                    image="/images/logos/puzzle-piece.svg" repo="https://github.com/LUISJG57/PuzzleLove"
                     demo="/puzzlelove/" caseStudy="/projects/puzzlelove" />
+                <Tag title="Multi-Cloud Game Servers" image="/images/logos/minecraft.svg" content="Self-hosted Minecraft (Fabric) servers running on free-tier VMs across Oracle Cloud, AWS and Google Cloud, managed through a Pterodactyl panel with Wings running each game server in Docker. The panel runs on Ubuntu with Nginx and MySQL, Wings runs as a systemd service for automatic restarts, every host is locked down with cloud firewall rules, UFW, minimal open ports and key-based SSH, and backups go to S3 object storage automatically." />
                 <Tag title="Howl" content="Developed a Web App that allows visualizing and analyzing customer conversations, transcribing in real-time, analyzing emotions, detecting key topics, and generating reports with relevant metrics. Won 1st Place in the Technology Entrepreneurship category at Tecnológico de Monterrey's ExpoIngenierías and Best Development, awarded by our corporate mentor NEORIS." 
                     isWinner={true} image="/images/logos/howl2.png" repo="https://github.com/SantiagoDlrr/howl.git" 
                     video="https://www.youtube.com/watch?v=prt349ptWsQ" 

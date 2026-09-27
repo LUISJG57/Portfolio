@@ -1,83 +1,152 @@
 "use client";
 import SvgIcon from '../svgIcon';
+
 interface Skill {
   name: string;
   logo: string;
-  alt: string;
+  // Raster logos can't be recolored through their fills, so they are drawn as a CSS mask.
+  mask?: boolean;
 }
 
-const programmingLanguages: Skill[] = [
-  { name: 'C++', logo: '/images/logos/c++.svg', alt: 'C++ logo' },
-  { name: 'Swift', logo: '/images/logos/SWFIT.svg', alt: 'Swift logo' },
-  { name: 'JavaScript', logo: '/images/logos/JavaScript.svg', alt: 'JavaScript logo' },
-  { name: 'Python', logo: '/images/logos/python.svg', alt: 'Python logo' },
+interface SkillRow {
+  title: string;
+  skills: Skill[];
+  reverse?: boolean;
+}
+
+const L = (file: string) => `/images/logos/${file}`;
+
+const rows: SkillRow[] = [
+  {
+    title: 'Languages',
+    skills: [
+      { name: 'Python', logo: L('python.svg') },
+      { name: 'TypeScript', logo: L('typescript.svg') },
+      { name: 'JavaScript', logo: L('JavaScript.svg') },
+      { name: 'SQL', logo: L('Postgresql.svg') },
+      { name: 'C++', logo: L('c++.svg') },
+      { name: 'Swift', logo: L('SWFIT.svg') },
+    ],
+  },
+  {
+    title: 'AI / ML',
+    reverse: true,
+    skills: [
+      { name: 'OpenAI', logo: L('OpenAi.svg') },
+      { name: 'Claude', logo: L('claude.svg') },
+      { name: 'Gemini', logo: L('googlegemini.svg') },
+      { name: 'Scikit-learn', logo: L('scikitlearn.svg') },
+      { name: 'Pandas', logo: L('pandas.svg') },
+      { name: 'NumPy', logo: L('numpy.svg') },
+      { name: 'Jupyter', logo: L('jupyter.svg') },
+    ],
+  },
+  {
+    title: 'Web & Backend',
+    skills: [
+      { name: 'Next.js', logo: L('nextjs.svg') },
+      { name: 'React', logo: L('React.svg') },
+      { name: 'Vite', logo: L('vite.svg') },
+      { name: 'Tailwind', logo: L('tailwindcss.svg') },
+      { name: 'Node.js', logo: L('nodedotjs.svg') },
+      { name: 'Socket.IO', logo: L('socketdotio.svg') },
+      { name: 'FastAPI', logo: L('fastapi.svg') },
+      { name: 'Supabase', logo: L('supabase.svg') },
+      { name: 'Firebase', logo: L('firebase.svg') },
+    ],
+  },
+  {
+    title: 'Data',
+    reverse: true,
+    skills: [
+      { name: 'PostgreSQL', logo: L('Postgresql.svg') },
+      { name: 'MySQL', logo: L('mysql.svg') },
+      { name: 'Apache Spark', logo: L('apachespark.svg') },
+      { name: 'Delta Lake', logo: L('delta.svg'), mask: true },
+      { name: 'Superset', logo: L('apachesuperset.svg') },
+      { name: 'Power BI', logo: L('PowerBi.svg') },
+      { name: 'Streamlit', logo: L('streamlit.svg') },
+    ],
+  },
+  {
+    title: 'Cloud & DevOps',
+    skills: [
+      { name: 'Azure', logo: L('AZURE.svg') },
+      { name: 'AWS', logo: L('aws.svg') },
+      { name: 'Google Cloud', logo: L('googlecloud.svg') },
+      { name: 'Oracle Cloud', logo: L('Oracle.svg') },
+      { name: 'Docker', logo: L('docker.svg') },
+      { name: 'Traefik', logo: L('traefikproxy.svg') },
+      { name: 'Nginx', logo: L('nginx.svg') },
+      { name: 'Ansible', logo: L('ansible.svg') },
+      { name: 'Linux', logo: L('linux.svg') },
+      { name: 'GitHub Actions', logo: L('githubactions.svg') },
+      { name: 'Git', logo: L('git.svg') },
+    ],
+  },
+  {
+    title: 'Testing & Tools',
+    reverse: true,
+    skills: [
+      { name: 'Vitest', logo: L('vitest.svg') },
+      { name: 'Cypress', logo: L('cypress.svg') },
+      { name: 'Postman', logo: L('postman.svg') },
+      { name: 'Figma', logo: L('FIGMA.svg') },
+      { name: 'Salesforce', logo: L('salesforce.svg') },
+      { name: 'Unity', logo: L('UNITY.svg') },
+    ],
+  },
 ];
 
-const tools: Skill[] = [
-  { name: 'Firebase', logo: '/images/logos/firebase.svg', alt: 'Firebase logo' },
-  { name: 'Git', logo: '/images/logos/git.svg', alt: 'Git logo' },
-  { name: 'PostgreSQL', logo: '/images/logos/Postgresql.svg', alt: 'PostgreSQL logo' },
-  { name: 'MySQL', logo: '/images/logos/mysql.svg', alt: 'MySql logo' },
-  { name: 'Next.js', logo: '/images/logos/nextjs.svg', alt: 'Next.js logo' },
-  { name: 'React', logo: '/images/logos/React.svg', alt: 'React logo' },
-  { name: 'OpenAI', logo: '/images/logos/OpenAi.svg', alt: 'OpenAI logo' },
-  { name: 'Oracle', logo: '/images/logos/Oracle.svg', alt: 'Oracle logo' },
-  { name: 'Azure', logo: '/images/logos/AZURE.svg', alt: 'Azure logo' },
-  { name: 'Unity', logo: '/images/logos/UNITY.svg', alt: 'Unity logo' },
-  { name: 'Figma', logo: '/images/logos/FIGMA.svg', alt: 'Figma logo' },
-  { name: 'PowerBi', logo: '/images/logos/PowerBi.svg', alt: 'PowerBi logo' },
-];
-
-
+function Marquee({ skills, reverse }: { skills: Skill[]; reverse?: boolean }) {
+  // The list is rendered twice so the -50% translate loops seamlessly.
+  return (
+    <div className="marquee w-full overflow-hidden">
+      <div className={`marquee-track flex w-max ${reverse ? 'marquee-reverse' : ''}`}>
+        {[...skills, ...skills].map((skill, i) => (
+          <div
+            key={`${skill.name}-${i}`}
+            className="flex flex-col items-center gap-2 px-4 md:px-6"
+            aria-hidden={i >= skills.length}
+          >
+            {skill.mask ? (
+              <span
+                role="img"
+                aria-label={`${skill.name} logo`}
+                className="block bg-[var(--color-background)]"
+                style={{
+                  width: 38,
+                  height: 38,
+                  mask: `url('${skill.logo}') center / contain no-repeat`,
+                  WebkitMask: `url('${skill.logo}') center / contain no-repeat`,
+                }}
+              />
+            ) : (
+              <SvgIcon src={skill.logo} alt={`${skill.name} logo`} size={38} />
+            )}
+            <span className="text-[var(--color-background)] text-xs md:text-sm whitespace-nowrap" style={{ fontFamily: 'InriaSans-Regular' }}>
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Tech() {
   return (
-    <div className="flex flex-col justify-center items-center bg-secondary rounded-md p-10 gap-y-4">
-      <div className="mb-8 flex flex-col justify-center items-center">
-        <div className="mb-6 px-4 py-0 bg-primary rounded-full">
-            <h2 
-            className="text-center text-[#203731]" 
-            style={{ fontFamily: 'Monocraft', fontSize: '1.5rem' }}
-            >
-            Programming Languages
+    <div className="flex flex-col justify-center items-center bg-secondary rounded-md py-6 md:py-8 gap-y-4 w-[calc(100vw-2rem)] max-w-xl lg:max-w-md xl:max-w-lg">
+      {rows.map((row) => (
+        <div key={row.title} className="flex flex-col items-center gap-3 w-full">
+          <div className="px-4 bg-primary rounded-full">
+            <h2 className="text-center text-[#203731] text-lg md:text-2xl" style={{ fontFamily: 'Monocraft' }}>
+              {row.title}
             </h2>
+          </div>
+          <Marquee skills={row.skills} reverse={row.reverse} />
         </div>
-        <div className="grid grid-cols-4 gap-6">
-          {programmingLanguages.map((skill) => (
-            <div key={skill.name} className="flex justify-center intersect:motion-preset-slide-left-lg">
-                <div className="flex items-center justify-center">
-                  <SvgIcon 
-                    src={skill.logo} 
-                    alt={skill.alt} 
-                  />
-                </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      <div className='flex flex-col justify-center items-center'>
-        <div className="mb-6 px-4 py-0 bg-primary rounded-full">
-            <h2 
-            className="text-center text-[#203731]" 
-            style={{ fontFamily: 'Monocraft', fontSize: '1.5rem' }}
-            >
-            Tools & Technologies
-            </h2>
-        </div>
-        <div className="grid grid-cols-6 gap-6 gap-y-8 intersect:motion-preset-slide-right-lg">
-          {tools.slice(0, 12).map((tool) => (
-            <div key={tool.name} className="flex justify-center">
-              <div className="flex items-center justify-center">
-                <SvgIcon 
-                  src={tool.logo} 
-                  alt={tool.alt} 
-                /> 
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
   );
 }

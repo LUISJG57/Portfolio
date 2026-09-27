@@ -1,10 +1,9 @@
 "use client"
-import SvgIcon from '../svgIcon';
 
 export default function Presentation() {
   return (
     <div className="flex flex-col justify-center gap-5">
-        <h1 className="text-[var(--color-text)]" style={{ fontFamily: 'Monocraft', fontSize: '4.5rem', whiteSpace: 'nowrap', overflow: 'hidden', borderRight: '2px solid', animation: 'typing 2s steps(20) infinite alternate, blink .7s infinite' 
+        <h1 className="text-[var(--color-text)] text-4xl sm:text-5xl md:text-[4.5rem]" style={{ fontFamily: 'Monocraft', whiteSpace: 'nowrap', overflow: 'hidden', borderRight: '2px solid', animation: 'typing 2s steps(20) infinite alternate, blink .7s infinite' 
         }}>
           Hello,
           <br />
@@ -28,32 +27,11 @@ export default function Presentation() {
             }
           }
         `}</style>
-      <p className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '2rem'}}>
-        I&apos;m a computer science student<br />
-        at the Tecnológico de Monterrey.<br />
-        I&apos;m in my seventh semester and I&apos;m<br />
-        currently living in Monterrey.
+      <p className="text-[var(--color-text)] text-xl md:text-[1.75rem] max-w-xl mb-6" style={{ fontFamily: 'InriaSans-Light'}}>
+        Computer Science grad from Tecnológico de Monterrey, based in Monterrey.
+        I love building with AI and the cloud, from LLM pipelines to the
+        infrastructure that keeps them running.
       </p>
-      
-      <button 
-        onClick={() => {
-          const link = document.createElement('a');
-          link.href = '/files/Resume_LuisJuarez_07-2025.pdf';
-          link.download = 'LuisJuarezCV.pdf';
-          link.click();
-        }} 
-        className="flex flex-row items-center mb-6 px-4 py-0.5 gap-4 bg-accent rounded-full hover:opacity-80 transition-opacity"
-        style={{ fontFamily: 'InriaSans-Regular', fontSize: '1rem' }}
-      >
-        <SvgIcon 
-          src={'/images/logos/CV_icon.svg'} 
-          alt={"CV Logo"} 
-          size={20}
-        />
-        <p className="text-[#F0E8DF]" style={{ fontFamily: 'InriaSans-Regular', fontSize: '1.1rem' }}>
-          Download my CV
-        </p>
-      </button>
     </div>
   );
 }
