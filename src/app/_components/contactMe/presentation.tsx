@@ -1,5 +1,4 @@
 "use client"
-import SvgIcon from '../svgIcon';
 
 export default function Presentation() {
   return (
@@ -28,32 +27,11 @@ export default function Presentation() {
             }
           }
         `}</style>
-      <p className="text-[var(--color-text)] text-xl md:text-[2rem]" style={{ fontFamily: 'InriaSans-Light'}}>
-        I&apos;m a computer science student{" "}<br className="hidden md:inline" />
-        at the Tecnológico de Monterrey.{" "}<br className="hidden md:inline" />
-        I&apos;m in my seventh semester and I&apos;m{" "}<br className="hidden md:inline" />
-        currently living in Monterrey.
+      <p className="text-[var(--color-text)] text-xl md:text-[1.75rem] max-w-xl mb-6" style={{ fontFamily: 'InriaSans-Light'}}>
+        Computer Science grad from Tecnológico de Monterrey, based in Monterrey.
+        I love building with AI and the cloud, from LLM pipelines to the
+        infrastructure that keeps them running.
       </p>
-      
-      <button 
-        onClick={() => {
-          const link = document.createElement('a');
-          link.href = '/files/Resume_LuisJuarez_07-2025.pdf';
-          link.download = 'LuisJuarezCV.pdf';
-          link.click();
-        }} 
-        className="flex flex-row items-center self-start mb-6 px-4 py-0.5 gap-4 bg-accent rounded-full hover:opacity-80 transition-opacity"
-        style={{ fontFamily: 'InriaSans-Regular', fontSize: '1rem' }}
-      >
-        <SvgIcon 
-          src={'/images/logos/CV_icon.svg'} 
-          alt={"CV Logo"} 
-          size={20}
-        />
-        <p className="text-[#F0E8DF]" style={{ fontFamily: 'InriaSans-Regular', fontSize: '1.1rem' }}>
-          Download my CV
-        </p>
-      </button>
     </div>
   );
 }
