@@ -78,7 +78,9 @@ jobs:
         env:
           TARGET: ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}
         run: |
-          rsync -az --chmod=D755,F644 -e "ssh -i ~/.ssh/id_deploy" \
+          # Only directories are normalised: F644 would strip the execute bit from deploy.sh, so
+          # the documented `./deploy.sh` would fail on the server.
+          rsync -az --chmod=D755 -e "ssh -i ~/.ssh/id_deploy" \
             --exclude .env --exclude .env.example --exclude docker-compose.local.yml \
             deploy/ "$TARGET:/opt/portfolio/"
 
