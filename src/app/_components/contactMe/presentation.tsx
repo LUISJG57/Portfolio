@@ -38,7 +38,7 @@ export default function Presentation() {
       <button 
         onClick={() => {
           const link = document.createElement('a');
-          link.href = '/files/Resume_LuisJuarez_07:2025.pdf';
+          link.href = '/files/Resume_LuisJuarez_07-2025.pdf';
           link.download = 'LuisJuarezCV.pdf';
           link.click();
         }} 

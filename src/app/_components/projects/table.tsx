@@ -8,6 +8,9 @@ export default function Table() {
             PROJECTS
             </h1>
             <div className="grid grid-cols-3 gap-10">
+                <Tag title="PuzzleLove" content="A real-time multiplayer jigsaw puzzle and the whole platform around it, running on a single 8 GB VPS I operate: an authoritative Node + Socket.IO game server with a deterministic shared engine, a nightly PySpark + Delta Lake pipeline into a Postgres star-schema warehouse, a public Superset dashboard defined as code, and CI/CD that ships five images and rolls itself back on a failed health check."
+                    image="/images/puzzlelove/game.png" repo="https://github.com/LUISJG57/PuzzleLove"
+                    demo="/puzzlelove/" caseStudy="/projects/puzzlelove" />
                 <Tag title="Howl" content="Developed a Web App that allows visualizing and analyzing customer conversations, transcribing in real-time, analyzing emotions, detecting key topics, and generating reports with relevant metrics. Won 1st Place in the Technology Entrepreneurship category at Tecnológico de Monterrey's ExpoIngenierías and Best Development, awarded by our corporate mentor NEORIS." 
                     isWinner={true} image="/images/logos/howl2.png" repo="https://github.com/SantiagoDlrr/howl.git" 
                     video="https://www.youtube.com/watch?v=prt349ptWsQ" 

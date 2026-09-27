@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!deploy/.env.example
+
+# deploy state written on the server
+deploy/.deployed-release
 
 # vercel
 .vercel

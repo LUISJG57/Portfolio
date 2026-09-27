@@ -1,0 +1,37 @@
+# Portfolio at the root of $DOMAIN. Its own compose project, deployed independently of everything
+# else on the host; Traefik, TLS, monitoring and the cgroup slices belong to the PuzzleLove repo.
+# Contract for this file: docs/platform.md in https://github.com/LUISJG57/PuzzleLove
+#
+# On the VPS (from /opt/portfolio):
+#   ./deploy.sh sha-abc1234
+#
+# Only Traefik publishes ports. Docker bypasses UFW, so nothing here may use `ports:`.
+name: portfolio
+
+services:
+  portfolio:
+    image: ${PORTFOLIO_IMAGE:-portfolio:local}
+    restart: unless-stopped
+    networks: [edge]
+    # Shares one ceiling with every other app on the host, so none of us can starve the platform.
+    cgroup_parent: apps.slice
+    mem_reservation: 32m
+    cpu_shares: 256
+    oom_score_adj: 0
+    labels:
+      traefik.enable: 'true'
+      # The bare Host() rule is the shortest on this domain, so every app with a PathPrefix already
+      # outranks it. The explicit priority says so out loud instead of relying on rule length.
+      traefik.http.routers.portfolio.rule: Host(`${DOMAIN:?set DOMAIN}`)
+      traefik.http.routers.portfolio.priority: 1
+      traefik.http.routers.portfolio.entrypoints: websecure
+      traefik.http.routers.portfolio.middlewares: ratelimit@file
+      traefik.http.services.portfolio.loadbalancer.server.port: 80
+    deploy:
+      resources:
+        limits: { memory: 64M }
+
+networks:
+  # Created once by the PuzzleLove repo's Ansible (roles/resources); shared by every app.
+  edge:
+    external: true

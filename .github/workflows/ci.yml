@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      # Also proves the static export still works, which is what nginx serves.
+      - run: npm run build
+
+      - name: Check the export produced the pages we route to
+        run: |
+          test -f out/index.html
+          test -f out/404.html
+          test -f out/projects/puzzlelove/index.html

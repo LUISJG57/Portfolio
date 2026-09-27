@@ -1,0 +1,90 @@
+name: Deploy
+
+# Builds the image and deploys it to /opt/portfolio on the VPS. Traefik, TLS, the `edge` network and
+# the cgroup slices are owned by the PuzzleLove repo (see docs/platform.md there); this workflow only
+# ships this app.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  image:
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      repo: ${{ steps.refs.outputs.repo }}
+      tag: ${{ steps.refs.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Compute image references
+        id: refs
+        run: |
+          owner=${GITHUB_REPOSITORY_OWNER,,}
+          tag=sha-${GITHUB_SHA::7}
+          echo "repo=ghcr.io/$owner/" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "image=ghcr.io/$owner/portfolio:$tag" >> "$GITHUB_OUTPUT"
+          echo "latest=ghcr.io/$owner/portfolio:latest" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v7
+        with:
+          context: .
+          target: runtime
+          push: true
+          tags: |
+            ${{ steps.refs.outputs.image }}
+            ${{ steps.refs.outputs.latest }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: image
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_deploy ~/.ssh/known_hosts
+
+      - name: Sync deploy files
+        env:
+          TARGET: ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}
+        run: |
+          rsync -az --chmod=D755,F644 -e "ssh -i ~/.ssh/id_deploy" \
+            --exclude .env --exclude .env.example --exclude docker-compose.local.yml \
+            deploy/ "$TARGET:/opt/portfolio/"
+
+      - name: Deploy release
+        env:
+          TARGET: ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}
+          IMAGE_REPO: ${{ needs.image.outputs.repo }}
+          IMAGE_TAG: ${{ needs.image.outputs.tag }}
+        run: ssh -i ~/.ssh/id_deploy "$TARGET" "IMAGE_REPO='$IMAGE_REPO' bash /opt/portfolio/deploy.sh '$IMAGE_TAG'"

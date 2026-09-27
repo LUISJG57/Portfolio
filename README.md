@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+My coding portfolio, at **https://luisjgl.cloud** — a Next.js App Router site exported to static files and served
+by nginx on a VPS I operate, not on a managed platform.
 
-First, run the development server:
+It shares that VPS with my other projects. This repository owns only the portfolio; Traefik, TLS, monitoring and the
+cgroup resource tiers live in the [PuzzleLove](https://github.com/LUISJG57/PuzzleLove) repository, whose
+[`docs/platform.md`](https://github.com/LUISJG57/PuzzleLove/blob/main/docs/platform.md) is the contract every app on
+the host follows.
+
+| Path | Served by |
+|---|---|
+| `luisjgl.cloud/` | this repository (nginx, static export) |
+| `luisjgl.cloud/projects/puzzlelove/` | the write-up for PuzzleLove |
+| `luisjgl.cloud/puzzlelove/` | the PuzzleLove game, its own repository and pipeline |
+
+## Stack
+
+Next.js 15 (App Router, `output: 'export'`), React 19, Tailwind CSS 4, framer-motion, lucide-react.
+
+There is no Node process in production: `next build` emits `out/`, and the container is nginx plus those files —
+a few MB of RAM against a 64 MB cap, which matters on a host whose memory is budgeted per slice.
+
+## Running locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev            # http://localhost:3000
+npm run lint
+npm run build          # static export into out/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploying
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Every push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml): lint and build, then a
+single image to GHCR, then an SSH deploy that rsyncs `deploy/` to `/opt/portfolio`, pulls the tag, waits for the
+container and checks `https://luisjgl.cloud/healthz`. A failed health check rolls back to the previous tag.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Required repository secrets (environment `production`): `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`, `VPS_KNOWN_HOSTS`.
+The GHCR package must be marked public after the first push, or the VPS cannot pull it.
 
-## Learn More
+First-time setup on the server — `/opt/portfolio`, the shared `edge` network and the cgroup slices — is done by the
+Ansible playbook in the PuzzleLove repository.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+Dockerfile                        build with node, serve with nginx
+deploy/nginx.conf                 static serving, cache policy, /healthz
+deploy/docker-compose.prod.yml    one service, joins the shared `edge` network, no published ports
+deploy/deploy.sh                  pull, start, health check, roll back
+src/app/                          App Router: sections on one page, plus the PuzzleLove write-up
+```

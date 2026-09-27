@@ -1,0 +1,8 @@
+node_modules
+.next
+out
+.git
+.github
+deploy/.env
+deploy/.deployed-release
+README.md

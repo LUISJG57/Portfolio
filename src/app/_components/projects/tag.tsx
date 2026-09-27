@@ -10,10 +10,11 @@ interface TagProps {
   repo?: string; 
   demo?: string; // Added demo prop
   video?: string; // Added video prop
+  caseStudy?: string; // Internal page with the write-up for this project
   isWinner?: boolean;
 }
 
-export default function Tag({ title, content, image, repo, demo, video, isWinner }: TagProps) {
+export default function Tag({ title, content, image, repo, demo, video, caseStudy, isWinner }: TagProps) {
   return (
     <div className="flex flex-col justify-between bg-background p-4 rounded h-full intersect:motion-preset-slide-left-lg">
       <div> {/* Agrupamos el título y contenido en un div */}
@@ -30,6 +31,17 @@ export default function Tag({ title, content, image, repo, demo, video, isWinner
         <span className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light' }}>
           {content}
         </span>
+        {caseStudy && (
+          <div className="mt-3">
+            <Link
+              href={caseStudy}
+              className="text-[var(--color-accent)] underline underline-offset-4 hover:opacity-80 transition-opacity"
+              style={{ fontFamily: 'InriaSans-Bold', fontSize: '1rem' }}
+            >
+              Read how it was built →
+            </Link>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-row items-end justify-between mt-auto"> {/* Añadido mt-auto */}
