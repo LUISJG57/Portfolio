@@ -6,3 +6,4 @@ out
 deploy/.env
 deploy/.deployed-release
 README.md
+vercel.json
