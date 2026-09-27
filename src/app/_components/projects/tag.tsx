@@ -96,6 +96,7 @@ export default function Tag({ title, content, image, repo, demo, video, caseStud
             alt={title || 'Tag image'} 
             height={100} 
             width={100}
+            className="ml-auto"
             style={{ opacity: 0.5 }} 
           />
         )}
