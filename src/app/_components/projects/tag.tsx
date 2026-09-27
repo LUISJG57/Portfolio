@@ -19,7 +19,7 @@ export default function Tag({ title, content, image, repo, demo, video, caseStud
     <div className="flex flex-col justify-between bg-background p-4 rounded h-full intersect:motion-preset-slide-left-lg">
       <div> {/* Agrupamos el título y contenido en un div */}
         <div className="flex flex-row items-center gap-2 mb-2">
-          <h1 className="text-[var(--color-secondary)]" style={{ fontFamily: 'InriaSans-Bold', fontSize: '2.5rem' }}>
+          <h1 className="text-[var(--color-secondary)] text-3xl md:text-[2.5rem]" style={{ fontFamily: 'InriaSans-Bold' }}>
             {title}
           </h1>
           {isWinner && (
@@ -44,7 +44,7 @@ export default function Tag({ title, content, image, repo, demo, video, caseStud
         )}
       </div>
 
-      <div className="flex flex-row items-end justify-between mt-auto"> {/* Añadido mt-auto */}
+      <div className="flex flex-row flex-wrap items-end justify-between gap-3 mt-4"> {/* Añadido mt-auto */}
         {repo && ( 
           <Link href={repo} className="gap-4" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'InriaSans-Regular', fontSize: '1rem'}}>
             <div className="flex flex-row items-center gap-4 hover:opacity-80 transition-opacity">

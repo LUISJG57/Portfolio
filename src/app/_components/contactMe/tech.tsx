@@ -32,17 +32,17 @@ const tools: Skill[] = [
 
 export default function Tech() {
   return (
-    <div className="flex flex-col justify-center items-center bg-secondary rounded-md p-10 gap-y-4">
+    <div className="flex flex-col justify-center items-center bg-secondary rounded-md p-6 md:p-10 gap-y-4">
       <div className="mb-8 flex flex-col justify-center items-center">
         <div className="mb-6 px-4 py-0 bg-primary rounded-full">
             <h2 
-            className="text-center text-[#203731]" 
-            style={{ fontFamily: 'Monocraft', fontSize: '1.5rem' }}
+            className="text-center text-[#203731] text-lg md:text-2xl" 
+            style={{ fontFamily: 'Monocraft' }}
             >
             Programming Languages
             </h2>
         </div>
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-4 md:gap-6">
           {programmingLanguages.map((skill) => (
             <div key={skill.name} className="flex justify-center intersect:motion-preset-slide-left-lg">
                 <div className="flex items-center justify-center">
@@ -59,13 +59,13 @@ export default function Tech() {
       <div className='flex flex-col justify-center items-center'>
         <div className="mb-6 px-4 py-0 bg-primary rounded-full">
             <h2 
-            className="text-center text-[#203731]" 
-            style={{ fontFamily: 'Monocraft', fontSize: '1.5rem' }}
+            className="text-center text-[#203731] text-lg md:text-2xl" 
+            style={{ fontFamily: 'Monocraft' }}
             >
             Tools & Technologies
             </h2>
         </div>
-        <div className="grid grid-cols-6 gap-6 gap-y-8 intersect:motion-preset-slide-right-lg">
+        <div className="grid grid-cols-4 md:grid-cols-6 gap-4 md:gap-6 gap-y-6 md:gap-y-8 intersect:motion-preset-slide-right-lg">
           {tools.slice(0, 12).map((tool) => (
             <div key={tool.name} className="flex justify-center">
               <div className="flex items-center justify-center">

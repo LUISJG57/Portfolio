@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   // 1. Efecto para el scroll del navbar (fondo al hacer scroll)
@@ -42,6 +44,7 @@ export default function Navbar() {
   const handleScrollTo = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
   };
 
   // 4. Estilos dinámicos
@@ -57,8 +60,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 md:px-16 ${
-      isScrolled ? "bg-background/50 backdrop-blur-md shadow-sm" : "bg-transparent"
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 px-4 md:px-16 ${
+      isScrolled || menuOpen ? "bg-background/50 backdrop-blur-md shadow-sm" : "bg-transparent"
     }`}>
       <div className="flex justify-between items-center mx-auto">
         <div 
@@ -67,8 +70,8 @@ export default function Navbar() {
         >
           <div className="w-6 h-6 rounded-full bg-accent"></div>
           <span 
-            className={`transition-colors ${isScrolled ? "text-text" : "text-[var(--color-background)]"}`} 
-            style={{ fontFamily: "Monocraft", fontSize: "1.5rem" }}
+            className={`text-lg md:text-2xl transition-colors ${isScrolled || menuOpen ? "text-text" : "text-[var(--color-background)]"}`} 
+            style={{ fontFamily: "Monocraft" }}
           >
             Luis Juárez
           </span>
@@ -76,7 +79,7 @@ export default function Navbar() {
 
         {/* Links de navegación */}
         <nav 
-          className="md:flex items-center justify-between gap-20" 
+          className="hidden md:flex items-center justify-between gap-10 lg:gap-20" 
           style={{ fontSize: "1.3rem" }}
         >
           {['experience', 'projects'].map((section) => (
@@ -111,7 +114,37 @@ export default function Navbar() {
             </button>
           </div>
         </nav>
+
+        {/* Botón de menú (móvil) */}
+        <button
+          className={`md:hidden p-1 ${isScrolled || menuOpen ? "text-text" : "text-[var(--color-background)]"}`}
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
+
+      {/* Menú desplegable (móvil) */}
+      {menuOpen && (
+        <nav className="md:hidden flex flex-col items-start gap-4 pt-4 pb-2" style={{ fontSize: "1.2rem" }}>
+          {['experience', 'projects', 'contact'].map((section) => (
+            <button
+              key={section}
+              onClick={() => handleScrollTo(section)}
+              className={`text-text ${activeSection === section ? "font-bold underline underline-offset-4 decoration-2" : "font-light"}`}
+              style={{
+                fontFamily: activeSection === section
+                  ? "InriaSans-Bold"
+                  : "InriaSans-Light",
+              }}
+            >
+              {section === 'contact' ? 'Contact Me!' : section.charAt(0).toUpperCase() + section.slice(1)}
+            </button>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }

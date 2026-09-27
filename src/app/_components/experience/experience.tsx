@@ -4,16 +4,16 @@ import SvgIcon from '../svgIcon';
 export default function Experience() {
   return (
     <div className="flex flex-col justify-center items-center  gap-y-10">
-        <h1 className="text-[var(--color-text)] intersect:motion-preset-slide-down-md" style={{ fontFamily: 'Monocraft',  fontSize: '3rem'}}>
+        <h1 className="text-[var(--color-text)] text-4xl md:text-[3rem] intersect:motion-preset-slide-down-md" style={{ fontFamily: 'Monocraft'}}>
         Experience
         </h1>
-        <div className="flex flex-row justify-center gap-20">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-20">
             <div className='flex flex-col items-center intersect:motion-preset-pop'>
                   <SvgIcon 
                     src={'/images/logos/DIDI.svg'} 
                     alt={"Didi Logo"} 
                     color='var(--color-text)'
-                    size={150}
+                    size={120}
                   />
                   <span className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '1rem', opacity: 0.8, textAlign: 'center' }}>
                   Jun 2024 - Dec 2024
@@ -23,7 +23,7 @@ export default function Experience() {
 
             </div>
             <div className='flex flex-col'>
-                <h2 className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Bold',  fontSize: '1.5rem'}}>
+                <h2 className="text-[var(--color-text)] text-xl md:text-2xl" style={{ fontFamily: 'InriaSans-Bold'}}>
                 DIDI - DRV Onboarding and Data Intern
                 </h2>
                 <ul className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light', listStyleType: 'disc', paddingLeft: '1rem' }}>
@@ -36,13 +36,13 @@ export default function Experience() {
 
 
 
-        <div className="flex flex-row justify-center gap-20">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-20">
           <div className='flex flex-col items-center intersect:motion-preset-pop'>
                 <SvgIcon 
                   src={'/images/logos/TEC.svg'} 
                   alt={"TEC Logo"} 
                   color='var(--color-text)'
-                  size={150}
+                  size={120}
                 />
                 <span className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '1rem', opacity: 0.8, textAlign: 'center' }}>
                 Feb 2025 - Present
@@ -51,7 +51,7 @@ export default function Experience() {
                 </span>
           </div>
           <div className='flex flex-col'>
-              <h2 className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Bold',  fontSize: '1.5rem'}}>
+              <h2 className="text-[var(--color-text)] text-xl md:text-2xl" style={{ fontFamily: 'InriaSans-Bold'}}>
               TEC - Data Analyst / Developer                
               </h2>
               <ul className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light', listStyleType: 'disc', paddingLeft: '1rem' }}>
@@ -62,13 +62,13 @@ export default function Experience() {
           </div>
         </div>
 
-        <div className="flex flex-row justify-center gap-20">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-20">
           <div className='flex flex-col items-center intersect:motion-preset-pop'>
                 <SvgIcon 
                   src={'/images/logos/bat-logo-black.svg'} 
                   alt={"BAT Logo"} 
                   color='var(--color-text)'
-                  size={150}
+                  size={120}
                 />
                 <span className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '1rem', opacity: 0.8, textAlign: 'center' }}>
                 Jun 2025 - Present
@@ -77,7 +77,7 @@ export default function Experience() {
                 </span>
           </div>
           <div className='flex flex-col'>
-              <h2 className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Bold',  fontSize: '1.5rem'}}>
+              <h2 className="text-[var(--color-text)] text-xl md:text-2xl" style={{ fontFamily: 'InriaSans-Bold'}}>
               BAT - SWE Intern              
               </h2>
               <ul className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light', listStyleType: 'disc', paddingLeft: '1rem' }}>

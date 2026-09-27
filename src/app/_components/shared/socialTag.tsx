@@ -31,11 +31,10 @@ export default function SocialTag({
         size={size}
       />
       <span 
-        className="text-[var(--color-background)]" 
+        className="text-[var(--color-background)] text-2xl lg:text-[2rem]" 
         style={{ 
           fontFamily: 'InriaSans-Regular', 
-          textAlign: 'center', 
-          fontSize: '2rem' 
+          textAlign: 'center'
         }}
       >
         {title}

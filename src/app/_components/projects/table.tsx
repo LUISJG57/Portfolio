@@ -2,12 +2,12 @@ import Tag from "./tag";
 
 export default function Table() {
     return (
-        <div className="flex flex-col justify-center items-center mx-10 gap-y-5">
-            <h1 className="text-[var(--color-tex2)] intersect:motion-preset-slide-right-lg" 
-            style={{ fontFamily: 'Monocraft',  fontSize: '5rem'}}>
+        <div className="flex flex-col justify-center items-center mx-0 md:mx-10 gap-y-5">
+            <h1 className="text-[var(--color-tex2)] text-5xl md:text-[5rem] intersect:motion-preset-slide-right-lg" 
+            style={{ fontFamily: 'Monocraft'}}>
             PROJECTS
             </h1>
-            <div className="grid grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
                 <Tag title="PuzzleLove" content="A real-time multiplayer jigsaw puzzle and the whole platform around it, running on a single 8 GB VPS I operate: an authoritative Node + Socket.IO game server with a deterministic shared engine, a nightly PySpark + Delta Lake pipeline into a Postgres star-schema warehouse, a public Superset dashboard defined as code, and CI/CD that ships five images and rolls itself back on a failed health check."
                     image="/images/puzzlelove/game.png" repo="https://github.com/LUISJG57/PuzzleLove"
                     demo="/puzzlelove/" caseStudy="/projects/puzzlelove" />
