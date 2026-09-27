@@ -1,94 +1,101 @@
 "use client";
 import SvgIcon from '../svgIcon';
 
+interface Job {
+  company: string;
+  role: string;
+  logo: string;
+  dates: string;
+  type: string;
+  bullets: string[];
+}
+
+const jobs: Job[] = [
+  {
+    company: 'Tijerina Legal Group',
+    role: 'AI Specialist',
+    logo: '/images/logos/tijerina.svg',
+    dates: 'Jul 2026 - Present',
+    type: 'Full Time',
+    bullets: [
+      'Architecting and deploying a full-stack automated intake platform (React, Vite, Node.js) integrating Litify (Salesforce), DocuSign and Docrio APIs, saving ~12.5 hours per week of manual client onboarding.',
+      'Building cloud infrastructure on Azure (Functions, Blob Storage, Key Vault) with GitHub Actions CI/CD and Zero-Trust authentication via Microsoft Entra ID, handling PII and attorney-client confidentiality requirements.',
+      'Fine-tuning a sentiment analysis model for call transcripts to surface client sentiment signals from intake conversations.',
+      'Managing IT infrastructure, network routing and device provisioning for a 40+ user branch, enforcing security policies with Datto, Duo and Microsoft Entra.',
+    ],
+  },
+  {
+    company: 'BAT',
+    role: 'IDT Intern',
+    logo: '/images/logos/bat-logo-black.svg',
+    dates: 'Jun 2025 - Jun 2026',
+    type: 'Internship',
+    bullets: [
+      'Embedded with LATAM business teams to find manual workflow bottlenecks and ship Python automation end-to-end, from scoping to production.',
+      'Built Azure-connected ETL pipelines and a fuzzy matching and clustering algorithm to unify records across internal databases.',
+      'Designed an agentic fraud detection system on Microsoft Fabric, orchestrating a Copilot agent for anomaly exploration with explainability outputs for non-technical stakeholders.',
+      'Built Power Apps and maintained Power BI dashboards tracking logistics and operational KPIs across Latin America.',
+    ],
+  },
+  {
+    company: 'TEC',
+    role: 'Data Analyst / Developer',
+    logo: '/images/logos/TEC.svg',
+    dates: 'Feb 2025 - Jun 2026',
+    type: 'Part Time',
+    bullets: [
+      'Engineered a mobile-first assessment platform with Next.js and Supabase for real-time data collection and quadrant-based analysis.',
+      'Built clustering pipelines with pandas, regex and similarity scoring, reducing duplicate IDs by 90%.',
+      'Created Azure-connected ETL processes with Python and APIs, and interactive Power BI dashboards for sales and marketing stakeholders.',
+    ],
+  },
+  {
+    company: 'DiDi',
+    role: 'DRV Onboarding & Data Intern',
+    logo: '/images/logos/DIDI.svg',
+    dates: 'Jul 2024 - Dec 2024',
+    type: 'Internship',
+    bullets: [
+      'Monitored background check performance across 9 Latin American countries with SQL queries and dashboards of weekly trends.',
+      'Designed and deployed a Python script using graph structures and clustering to group users on shared variables, improving data integrity.',
+      'Automated compliance monitoring with SQL dashboards, cutting result delivery time from 7 business days to 1.',
+    ],
+  },
+];
+
 export default function Experience() {
   return (
-    <div className="flex flex-col justify-center items-center  gap-y-10">
-        <h1 className="text-[var(--color-text)] text-4xl md:text-[3rem] intersect:motion-preset-slide-down-md" style={{ fontFamily: 'Monocraft'}}>
+    <div className="flex flex-col justify-center items-center gap-y-10">
+      <h1 className="text-[var(--color-text)] text-4xl md:text-[3rem] intersect:motion-preset-slide-down-md" style={{ fontFamily: 'Monocraft' }}>
         Experience
-        </h1>
-        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-20">
-            <div className='flex flex-col items-center shrink-0 whitespace-nowrap intersect:motion-preset-pop'>
-                  <SvgIcon 
-                    src={'/images/logos/DIDI.svg'} 
-                    alt={"Didi Logo"} 
-                    color='var(--color-text)'
-                    size={120}
-                  />
-                  <span className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '1rem', opacity: 0.8, textAlign: 'center' }}>
-                  Jun 2024 - Dec 2024
-                  <br />
-                  Internship
-                  </span>
-
-            </div>
-            <div className='flex flex-col'>
-                <h2 className="text-[var(--color-text)] text-xl md:text-2xl" style={{ fontFamily: 'InriaSans-Bold'}}>
-                DIDI - DRV Onboarding and Data Intern
-                </h2>
-                <ul className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light', listStyleType: 'disc', paddingLeft: '1rem' }}>
-                  <li>Data Analysis and Reporting: Monitored background check performance, analyzed data trends, and developed dashboards for visualization and communication.</li>
-                  <li>Security Enhancement: Designed and deployed a Python script using graph structures and clustering algorithms to improve data integrity and user classification accuracy.</li>
-                  <li>Compliance and Efficiency: Automated compliance monitoring with SQL queries and dashboards, optimizing query performance and reducing result delivery time.</li>
-                </ul>
-            </div>
-        </div>
-
-
-
-        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-20">
-          <div className='flex flex-col items-center shrink-0 whitespace-nowrap intersect:motion-preset-pop'>
-                <SvgIcon 
-                  src={'/images/logos/TEC.svg'} 
-                  alt={"TEC Logo"} 
-                  color='var(--color-text)'
-                  size={120}
-                />
-                <span className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '1rem', opacity: 0.8, textAlign: 'center' }}>
-                Feb 2025 - Present
-                <br />
-                Part Time
-                </span>
+      </h1>
+      {jobs.map((job) => (
+        <div key={job.company} className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-12 w-full">
+          <div className='flex flex-col items-center shrink-0 whitespace-nowrap md:w-44 intersect:motion-preset-pop'>
+            <SvgIcon
+              src={job.logo}
+              alt={`${job.company} Logo`}
+              color='var(--color-text)'
+              size={120}
+            />
+            <span className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light', fontSize: '1rem', opacity: 0.8, textAlign: 'center' }}>
+              {job.dates}
+              <br />
+              {job.type}
+            </span>
           </div>
-          <div className='flex flex-col'>
-              <h2 className="text-[var(--color-text)] text-xl md:text-2xl" style={{ fontFamily: 'InriaSans-Bold'}}>
-              TEC - Data Analyst / Developer                
-              </h2>
-              <ul className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light', listStyleType: 'disc', paddingLeft: '1rem' }}>
-                <li>Data Integration: Developing automated data pipelines using Python and APIs to connect Excel sources to Azure databases.</li>
-                <li>Dashboard Development: Building interactive Power BI dashboards with custom visualizations, conducting testing and refinement, and presenting to stakeholders.</li>
-                <li>Stakeholder Collaboration: Collaborating with sales and marketing stakeholders to gather dashboard requirements, define KPIs, and create documentation and user guides.</li>
-              </ul>
+          <div className='flex flex-col flex-1'>
+            <h2 className="text-[var(--color-text)] text-xl md:text-2xl" style={{ fontFamily: 'InriaSans-Bold' }}>
+              {job.company} - {job.role}
+            </h2>
+            <ul className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light', listStyleType: 'disc', paddingLeft: '1rem' }}>
+              {job.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
           </div>
         </div>
-
-        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-20">
-          <div className='flex flex-col items-center shrink-0 whitespace-nowrap intersect:motion-preset-pop'>
-                <SvgIcon 
-                  src={'/images/logos/bat-logo-black.svg'} 
-                  alt={"BAT Logo"} 
-                  color='var(--color-text)'
-                  size={120}
-                />
-                <span className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light',  fontSize: '1rem', opacity: 0.8, textAlign: 'center' }}>
-                Jun 2025 - Present
-                <br />
-                Internship
-                </span>
-          </div>
-          <div className='flex flex-col'>
-              <h2 className="text-[var(--color-text)] text-xl md:text-2xl" style={{ fontFamily: 'InriaSans-Bold'}}>
-              BAT - SWE Intern              
-              </h2>
-              <ul className="text-[var(--color-text)]" style={{ fontFamily: 'InriaSans-Light', listStyleType: 'disc', paddingLeft: '1rem' }}>
-                <li>Developed custom Python automation tools to replace manual workflows, including file processing, data cleaning, and report generation, reducing hours long tasks to seconds.</li>
-                <li>Created a fuzzy matching and clustering algorithm to unify similar records (names, locations, owners), enhancing data accuracy across internal databases.</li>
-                <li>Developed apps with Power Apps to integrate these tools into a user-friendly internal platform used by non-technical staff.</li>
-                <li>Maintain and enhance Power BI dashboards used for tracking logistics and operational KPIs across Latin America, ensuring timely and accurate reporting for regional managers</li>
-              </ul>
-          </div>
-        </div>
-
+      ))}
     </div>
   );
 }
