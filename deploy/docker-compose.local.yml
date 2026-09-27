@@ -1,0 +1,9 @@
+# Local override for Docker Desktop: builds the image instead of pulling it.
+# The `edge` network and Traefik come from the PuzzleLove stack, so start that first:
+#   cd ../PuzzleLove/deploy && COMPOSE_EXTRA=docker-compose.local.yml bash deploy.sh local
+#   cd ../../Portfolio/deploy && COMPOSE_EXTRA=docker-compose.local.yml bash deploy.sh local
+services:
+  portfolio:
+    build:
+      context: ..
+      target: runtime
